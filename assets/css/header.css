@@ -1,0 +1,559 @@
+.content-header {
+	width: 100%;
+	height: 80px;
+	background: #830000;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+	position: absolute;
+	z-index: 100;
+	.opacity: 0;
+}
+
+.header-component {
+	position: relative;
+	background: #830000;
+	width: 1200px;
+	height: 100px;
+	margin: 0 auto;
+	box-shadow: 5px 0 20px rgba(0,0,0,0.3), -5px 0 20px rgba(0,0,0,0.3);
+}
+
+#header-minor,
+#header-major {
+	position: relative;
+	font-family: "Quicksand";
+	color: #fff;
+	display: block;
+}
+
+#header-minor {
+	font-size: 1.1em;
+	width: 350px;
+	top: 18px;
+	left: 25px;
+}
+
+#header-major {
+	font-size: 2.5em;
+	width: 700px;
+	top: 20px;
+	left: 20px;
+	text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+.content-nav {
+	position: absolute;
+	width: 200px;
+	height: 600px;
+	padding-top: 200px;
+	padding-right: 20px;
+	z-index: 1;
+}
+
+.content-nav ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.content-nav li {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.content-nav a {
+	text-decoration: none;
+}
+
+.content-nav .nav-item {
+	border-right: 5px solid #930000;
+	font-family: 'Quicksand';
+	font-size: 0.9em;
+	color: #222;
+	width: 100%;
+	height: 40px;
+	text-align: right;
+	padding-right: 20px;
+	line-height: 40px;
+}
+
+.content-nav .nav-item:hover {
+	border-color: #ff0000;
+}
+
+.content-drawer {
+	position: relative;
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.content-drawer .content-menu {
+	position: absolute;
+	width: 100%;
+	top: -210px;
+	z-index: 10;
+	-webkit-transition: top 0.3s ease-in-out;
+	-moz-transition: top 0.3s ease-in-out;
+	-o-transition: top 0.3s ease-in-out;
+	transition: top 0.3s ease-in-out;
+}
+
+.content-menu.open {
+	top: 0;
+}
+
+.menu-component {
+	position: absolute;
+	width: 1200px;
+	height: 320px;
+	background: #222;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.menu-component:before {
+	content: '';
+	width: 1px;
+	height: 150px;
+	position: absolute;
+	top: 140px;
+	left: 40%;
+	border-left: 3px groove #666;
+}
+
+.menu-component .items {
+	position: absolute;
+	width: 60%;
+	right: 0;
+	top: 150px;
+}
+
+.menu-component .item {
+	width: 200px;
+	height: 50px;
+	display: inline;
+	float: left;
+	margin: 5px;
+	text-align: center;
+	line-height: 2.5em;
+}
+
+.menu-component .item a {
+	text-decoration: none;
+	font-family: 'Quicksand';
+	font-size: 1.2em;
+	color: #bbb;
+}
+
+.menu-icon {
+	position: absolute;
+	width: 850px;
+	height: 80px;
+	top: 315px;
+	right: 0;
+}
+
+.menu-icon svg {
+	position: absolute;
+	width: 850px;
+	right: 0;
+}
+
+.menu-icon #menu-button {
+	position: absolute;
+	top: 15px;
+	right: 300px;
+	color: #fff;
+	font-size: 1.5em;
+	cursor: pointer;
+}
+
+.content-drawer .content-login {
+	position: absolute;
+	width: 350px;
+	height: 350px;
+	top: -195px;
+	z-index: 8;
+	-webkit-transition: top 0.3s ease-in-out;
+	-moz-transition: top 0.3s ease-in-out;
+	-o-transition: top 0.3s ease-in-out;
+	transition: top 0.3s ease-in-out;
+}
+
+.content-login.open {
+	top: 0;
+}
+
+.login-component {
+	position: absolute;
+	width: 100%;
+	height: 300px;
+	background: #111;
+}
+
+.login-component .component {
+	position: absolute;
+	width: 100%;
+}
+
+.login-component .component-part1 {
+	top: 120px;
+	width: 100%;
+	height: 100px;
+}
+
+.login-component .component-part1 form {
+	width: 100%;
+	height: 120px;
+}
+
+.login-component .component-part1 form input {
+	position: absolute;
+	font-family: 'Quicksand';
+	font-size: 20px;
+	left: 60px;
+}
+
+.login-component .component-part1 input[type='text'],
+.login-component .component-part1 input[type='password'] {
+	width: 230px;
+	height: 33px;
+	border: none;
+	padding: 5px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border-left: 5px solid #930000;
+}
+
+.login-component .component-part1 input[type='text'] {
+	top: 10px;
+}
+
+.login-component .component-part1 input[type='password'] {
+	top: 50px;
+}
+
+.login-component .component-part1 input[type='submit'] {
+	width: 100px;
+	height: 40px;
+	top: 100px;
+	left: 120px;
+	border: none;
+	box-sizing: border-box;
+	background: #111;
+	color: #fff;
+	z-index: 20;
+}
+
+.login-component .component-part1 input[type='submit']:hover {
+	border-top: 1px solid #930000;
+	border-bottom: 1px solid #930000;
+}
+
+.login-component .component-part2 {
+	top: 270px;
+	width: 100%;
+	height: 30px;
+}
+
+.login-component .component-part2 div {
+	position: absolute;
+	height: 100%;
+	width: 50%;
+	text-align: center;
+}
+
+.login-component .component-part2 a {
+	text-decoration: none;
+	font-family: 'Quicksand';
+	color: #888;
+	font-size: 0.8em;
+	line-height: 30px;
+}
+
+.login-component .component-part2 .alt-button {
+	left: 0;
+}
+
+.login-component .component-part2 .crt-button {
+	right: 0;
+}
+
+
+.login-icon {
+	position: absolute;
+	top: 300px;
+	width: 100%;
+	height: 50px;
+}
+
+.login-icon #login-button {
+	font-family: 'Quicksand';
+	position: absolute;
+	top: 10px;
+	left: 50px;
+	color: #fff;
+	font-size: 1em;
+	cursor: pointer;
+	z-index: 5;
+}
+
+
+@media screen and (max-width: 1000px) {
+	.header-component {
+		width: 900px;
+	}
+
+	.content-drawer {
+		width: 900px;
+	}
+
+	.content-nav {
+		width: 150px;
+	}
+
+	.menu-component {
+		width: 900px;
+	}
+
+	.menu-component:before {
+		left: 50%;
+	}
+
+	.menu-component .items {
+		width: 50%;
+	}
+
+	.menu-component .item {
+		width: 150px;
+		height: 30px;
+		display: block;
+		font-size: 14px;
+	}
+
+	.menu-icon,
+	.menu-icon svg {
+		width: 650px;
+	}
+
+	.menu-icon #menu-button {
+		right: 250px;
+	}
+
+	.content-drawer .content-login {
+		width: 350px;
+	}
+
+	.login-component .component-part1 form input {
+		left: 35px;
+		font-size: 15px;
+	}
+
+	.login-component .component-part1 input[type='submit'] {
+		left: 100px;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.header-component {
+		width: 800px;
+	}
+
+	.content-nav {
+		width: 150px;
+	}
+
+	.content-drawer {
+		width: 800px;
+	}
+
+	.menu-component {
+		width: 800px;
+	}
+
+	.menu-component:before {
+		left: 50%;
+	}
+
+	.menu-component .items {
+		width: 50%;
+	}
+
+	.menu-component .item {
+		width: 150px;
+		height: 30px;
+		display: block;
+		font-size: 14px;
+	}
+
+	.menu-icon,
+	.menu-icon svg {
+		width: 600px;
+	}
+
+	.menu-icon #menu-button {
+		right: 250px;
+	}
+
+	.content-drawer .content-login {
+		width: 300px;
+	}
+
+	.login-component .component-part1 form input {
+		left: 35px;
+		font-size: 15px;
+	}
+
+	.login-component .component-part1 input[type='submit'] {
+		left: 100px;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.header-component {
+		width: 500px;
+	}
+
+	#header-minor {
+		font-size: 0.7em;
+		width: 350px;
+		top: 32px;
+		left: 25px;
+	}
+
+	#header-major {
+		font-size: 1.5em;
+		width: 700px;
+		top: 35px;
+		left: 20px;
+		text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+	}
+
+	.content-drawer {
+		width: 500px;
+	}
+
+	.menu-component {
+		width: 500px;
+	}
+
+	.menu-component:before {
+		left: 60%;
+	}
+
+	.menu-component .items {
+		width: 40%;
+		top: 120px;
+	}
+
+	.menu-component .item {
+		width: 150px;
+		height: 15px;
+		display: block;
+		font-size: 10px;
+	}
+
+	.menu-icon,
+	.menu-icon svg {
+		width: 400px;
+		height: 50px;
+	}
+
+	.menu-icon #menu-button {
+		top: 10px;
+		right: 130px;
+		font-size: 1em;
+	}
+
+	.content-drawer .content-login {
+		width: 200px;
+	}
+
+	.content-login .login-icon,
+	.login-icon #login-svg {
+		height: 30px;
+	}
+
+	.login-icon #login-button {
+		font-size: 1em;
+		top: 5px;
+		left: 30px;
+	}
+
+	.login-component .component-part1 form input {
+		left: 10px;
+		font-size: 15px;
+	}
+
+	.login-component .component-part1 input[type='text'],
+	.login-component .component-part1 input[type='password'] {
+		width: 180px;
+		height: 30px;
+		padding: 5px;
+	}
+
+	.login-component .component-part1 input[type='text'] {
+		top: 5px;
+	}
+
+	.login-component .component-part1 input[type='password'] {
+		top: 40px;
+	}
+
+	.login-component .component-part1 input[type='submit'] {
+		left: 50px;
+		width: 100px;
+		height: 40px;
+		font-size: 14px;
+		top: 80px;
+	}
+
+	.login-component .component-part2 {
+		top: 240px;
+		height: 65px;
+	}
+
+	.login-component .component-part2 div {
+		width: 100%;
+		height: 20px;
+	}
+
+	.login-component .component-part2 a {
+		font-size: 0.7em;
+	}
+
+	.login-component .component-part2 .alt-button {
+		left: 0;
+	}
+
+	.login-component .component-part2 .crt-button {
+		right: 0;
+		top: 20px;
+	}
+
+	.content-nav {
+		width: 100%;
+		height: initial;
+		position: relative;
+		padding-top: 150px;
+		padding-right: 0;
+	}
+
+	.content-nav ul {
+		width: 450px;
+		margin: 0 auto;
+	}
+
+	.content-nav li {
+		width: 100px;
+		display: inline;
+		float: left;
+		margin: 0 25px;
+	}
+
+	.content-nav .nav-item {
+		width: 100px;
+		text-align: center;
+		padding-right: 0;
+		border: 0;
+		border-bottom: 3px solid #930000;
+	}
+}

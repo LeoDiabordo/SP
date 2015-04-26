@@ -1,0 +1,128 @@
+
+.login-component.logged-in .component-part1 .login-picture {
+	width: 92px;
+	height: 92px;
+	padding: 5px;
+	position: absolute;
+	float: left;
+	left: 20px;
+	top: 10px;
+	border: 1px solid #930000;
+}
+.login-component.logged-in .component-part1 .login-picture img {
+	width: 80px;
+	height: 80px;
+}
+.login-component.logged-in .component-part1 .login-info {
+	position: absolute;
+	float: left;
+	left: 100px;
+	margin: 10px;
+}
+
+.login-icon #login-button {
+	font-size: .9em;
+	width: 60px;
+}
+
+.login-component.logged-in .component-part1 .login-info h3,
+.login-component.logged-in .component-part1 .login-info h5 {
+	font-family: 'Quicksand';
+	text-align: center;
+	margin: 0;
+	right: 0;
+	width: 200px;
+	color: white;
+}
+
+.login-component.logged-in .component-part1 .login-info h5 { font-weight: normal; }
+
+.login-component.logged-in .component-part1 .login-info h3 { padding-top: 20px; }
+
+.login-component.logged-in .component-part2 .lgo-button {
+	right: 0;
+}
+
+.login-component.logged-in .component-part2 .lgo-button a:hover {
+	border-top: 1px solid #930000;
+	border-bottom: 1px solid #930000;
+	padding: 5px 0px 5px 0px;
+}
+
+@media screen and (max-width: 1000px) {
+
+	.login-component.logged-in .component-part1 .login-picture {
+		width: 100%;
+	}
+
+	.login-component.logged-in .component-part1 .login-info {
+		width: 100%;
+	}
+
+}
+
+@media screen and (max-width: 750px) {
+	
+	.login-component.logged-in .component-part1 .login-picture {
+		width: 72px;
+		height: 72px;
+		left: 75px;
+	}
+	.login-component.logged-in .component-part1 .login-picture img {
+		width: 60px;
+		height: 60px;
+	}
+	.login-component.logged-in .component-part1 .login-info {
+		top: 70px;
+		left: 0;
+		margin: 10px;
+	}
+
+	.login-component.logged-in .component-part1 .login-info h3,
+	.login-component.logged-in .component-part1 .login-info h5 {
+		font-size: .8em;
+	}
+
+	.login-component.logged-in .component-part2 .lgo-button {
+		top: 20px;
+		left: 5px;
+	}
+}
+
+@media screen and (max-width: 570px) {
+	.login-component.logged-in .component-part1 .login-picture {
+		width: 72px;
+		height: 72px;
+		left: 45px;
+	}
+	.login-component.logged-in .component-part1 .login-info {
+		top: 70px;
+		left: -30px;
+		margin: 10px;
+	}
+}
+
+@media screen and (max-width: 380px) {
+	.login-component.logged-in .component-part1 .login-picture {
+		width: 62px;
+		height: 62px;
+		left: 30px;
+	}
+	.login-component.logged-in .component-part1 .login-picture img {
+		width: 50px;
+		height: 50px;
+	}
+	.login-component.logged-in .component-part1 .login-info {
+		top: 70px;
+		left: -50px;
+		margin: 10px;
+	}
+	.login-component.logged-in .component-part2 .lgo-button {
+		left: 0;
+	}
+
+	.login-component.logged-in .component-part1 .login-info h3,
+	.login-component.logged-in .component-part1 .login-info h5 {
+		font-size: .6em;
+	}
+}
