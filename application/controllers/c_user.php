@@ -15,16 +15,65 @@ class C_user extends CI_Controller
     
     function index(){
         if($this->session->userdata('logged_in')){
-            
+
+
             $data = $this->data;
             $data['posts'] = $this->m_user->get_posts();
             
             $this->load->view('v_userheader', $data);
-            $this->load->view('v_user');
+            $this->load->view('v_user');            
             $this->load->view('v_footer');
+            
+            if(!$data['user'][0]['email']){
+                redirect('c_user/initialize_info','refresh');
+            }
+
         }
         else  
             redirect('c_index','refresh');
+    }
+
+    function initialize_info(){
+        $data = $this->data;
+        
+        $this->load->view('v_userheader', $data);
+        $this->load->view('v_init_info');
+        $this->load->view('v_footer');
+    }
+
+    function add_info(){
+        $id = $this->session->userdata('student_no');
+
+
+        $fname = $this->input->post('grad-first-name');
+        $lname = $this->input->post('grad-last-name');
+        $mname = $this->input->post('grad-mid-name');
+        $sex = $this->input->post('grad-sex');
+        $bdate = $this->input->post('grad-bdate');
+        $email = $this->input->post('grad-email');
+        $mobileno = $this->input->post('grad-mobile');
+        $telno = $this->input->post('grad-tel');
+        $field = $this->input->post('grad-field');
+        $major = $this->input->post('grad-major');
+        $gradyear = $this->input->post('grad-year');
+
+
+
+        $user_data = array(
+           'firstname' => $fname,
+           'lastname' => $lname,
+           'midname' => $mname,
+           'sex' => $sex,
+           'bdate' => $bdate,
+           'email' => $email,
+           'mobileno' => $mobileno,
+           'telno' => $telno,
+           'field' => $field,
+           'major' => $major,
+           'graduatedate' => $gradyear
+        );
+
+        $this->m_user->initialize_info($id ,$user_data);
     }
 
     function create_post(){

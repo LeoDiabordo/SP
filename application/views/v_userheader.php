@@ -46,7 +46,6 @@
         }
     </style>   
 	<body>
-        
 		<div id="container" class="container" >
 			<div class="content">
 				<header class="header content-header">

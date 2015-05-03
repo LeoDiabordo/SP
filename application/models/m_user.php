@@ -5,9 +5,13 @@ class M_user extends CI_Model{
     function get_details(){
         $stno = $this->session->userdata('student_no');
         $pword = $this->session->userdata('password');
-        
-        $found_details = $this->db->query("SELECT * FROM graduate WHERE student_no = '$stno' AND password = '$pword'");
-        return $found_details->result_array();
+    
+        $this->db->select('*');
+        $this->db->from('graduate');
+        $this->db->where('student_no', $stno);
+
+        $query = $this->db->get();
+        return $query->result_array();
     }
     
     function get_posts(){
@@ -22,6 +26,12 @@ class M_user extends CI_Model{
   //       SELECT t1.name, t2.salary FROM employee t1, info t2
   // WHERE t1.name = t2.name;
 
+    }
+
+    function initialize_info($id, $data){
+        $this->db->where('student_no', $id);
+        $this->db->update('graduate', $data); 
+        return;
     }
 	
 	function create_post(){	
@@ -69,12 +79,6 @@ class M_user extends CI_Model{
         $empstat = $this->input->post('exp-job-type');
         $datestart = $this->input->post('exp-job-start');
         $dateend = $this->input->post('exp-job-start');
-
-
-
-
-
-
 
         $query = $this->db->query("INSERT INTO work VALUES ('','$stno','$companynumber','$title','$salary','','$companytype','$empstat','$datestart','$dateend')");
 

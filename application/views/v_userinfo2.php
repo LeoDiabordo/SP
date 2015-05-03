@@ -1,5 +1,5 @@
 <div id="content-box" class="content-box clearfix" style="display: block;">
-    <h2>Career Information</h2>
+    <h2>Career Information2</h2>
     <form method="post" id="formself" class="filtered">
         <div id="wizard" class="wizard clearfix vertical" role="application">
             <div class="content clearfix">
