@@ -36,8 +36,17 @@
                                 <input type="text" name="exp-job-title" id="exp-job-title"/>
                             </div>
                             <div class="large-4 columns">
-                                <label> Salary </label>
-                                <input type="text" name="exp-job-salary" id="exp-job-salary"/>
+                                <label> Salary (Php)</label>
+                                <select name="exp-job-salary">
+                                    <option value=""> -- Select -- </option>
+                                    <option value="0"> Less than 20,000 </option>
+                                    <option value="1"> 20,001 - 40,000 </option>
+                                    <option value="2"> 40,001 - 60,000 </option>
+                                    <option value="3"> 60,001 - 80,000 </option>
+                                    <option value="4"> 80,001 - 100,000 </option>
+                                    <option value="5"> 100,001 - 150,000 </option>
+                                    <option value="6"> 150,001 and above </option>                     
+                                </select>
                             </div>
                             <div class="large-8 columns">
                                 <label> Employment type</label>
