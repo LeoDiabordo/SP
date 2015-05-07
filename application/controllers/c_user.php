@@ -35,6 +35,7 @@ class C_user extends CI_Controller
 
     function initialize_info(){
         $data = $this->data;
+        $data['list']=$this->m_user->getCountry();
         
         $this->load->view('v_userheader', $data);
         $this->load->view('v_init_info');
@@ -53,11 +54,9 @@ class C_user extends CI_Controller
         $email = $this->input->post('grad-email');
         $mobileno = $this->input->post('grad-mobile');
         $telno = $this->input->post('grad-tel');
-        $field = $this->input->post('grad-field');
-        $major = $this->input->post('grad-major');
-        $gradyear = $this->input->post('grad-year');
 
-
+        $country = $this->m_user->get_country_name($this->input->post('country'));
+        $country = $country.", ".$this->m_user->get_state_name($this->input->post('state'));
 
         $user_data = array(
            'firstname' => $fname,
@@ -68,9 +67,7 @@ class C_user extends CI_Controller
            'email' => $email,
            'mobileno' => $mobileno,
            'telno' => $telno,
-           'field' => $field,
-           'major' => $major,
-           'graduatedate' => $gradyear
+           'currentaddress' => $country
         );
 
         $this->m_user->initialize_info($id ,$user_data);
@@ -120,9 +117,37 @@ class C_user extends CI_Controller
         $data = $this->data;
         $stno = $this->session->userdata('student_no');
 
+
+        $companynumber = $this->m_user->get_companyno($this->input->post('exp-company-name'));
+        $title = $this->input->post('exp-job-title');
+        $salary = $this->input->post('exp-job-salary');
+        $companytype = $this->input->post('exp-company-type');
+        $empstat = $this->input->post('exp-job-type');
+        $datestart = $this->input->post('exp-job-start');
+        $dateend = $this->input->post('exp-job-start');
+
         $this->m_user->add_experience($stno);
         redirect('/c_user/update_information','refresh'); 
     }
+
+
+    public function loadData()
+     {
+       $loadType=$_POST['loadType'];
+       $loadId=$_POST['loadId'];
+       $result=$this->m_user->getData($loadType,$loadId);
+       $HTML="";
+
+       if($result->num_rows() > 0){
+         foreach($result->result() as $list){
+           $HTML.="<option value='".$list->id."'>".$list->name."</option>";
+         }
+       }
+       echo $HTML;
+     }
+
+
+
 
     function get_companies_name(){
         if (isset($_GET['term'])){

@@ -68,7 +68,7 @@
 									</div>
 									<div class="login-info">
 										<h3> <?php echo $user[0]['firstname']." ".$user[0]['lastname'];?> </h3>
-										<h5> <?php echo $user[0]['field'];?></h5>
+										<!-- <h5> <?php echo $user[0]['field'];?></h5> -->
 									</div>
 								</div>
 								<div class="component component-part2">

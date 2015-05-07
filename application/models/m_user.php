@@ -20,7 +20,7 @@ class M_user extends CI_Model{
 
         // $found_posts = 	$this->db->query("SELECT * FROM post WHERE studentno = '$stno' ORDER BY time DESC");
 
-        $found_posts = $this->db->query("SELECT * FROM post left join graduate on post.studentno=graduate.student_no WHERE post.studentno = '$stno' or post.studentno IN (select student_no_2 from connection where student_no_1 = '$stno') order by post.time desc");
+        $found_posts = $this->db->query("SELECT * FROM post left join graduate on post.studentno=graduate.student_no WHERE post.studentno = '$stno' or post.studentno IN (select studentno2 from connection where studentno1 = '$stno') order by post.time desc");
         return $found_posts->result_array();
 
   //       SELECT t1.name, t2.salary FROM employee t1, info t2
@@ -47,7 +47,7 @@ class M_user extends CI_Model{
         $stno = $this->session->userdata('student_no');
 
         $batch = substr($stno, 0, 4);
-        $found_suggestions = $this->db->query("SELECT * FROM graduate WHERE student_no LIKE '$batch%' AND student_no NOT IN (SELECT student_no_2 FROM connection WHERE student_no_1 = '$stno')");
+        $found_suggestions = $this->db->query("SELECT * FROM graduate WHERE student_no LIKE '$batch%' AND student_no NOT IN (SELECT studentno2 FROM connection WHERE studentno1 = '$stno')");
         return $found_suggestions->result_array();
     }
 
@@ -111,6 +111,47 @@ class M_user extends CI_Model{
           echo json_encode($row_set); //format the array into json data
         }
     }
+
+    function getCountry()
+    {
+       $this->db->select('id,printable_name');
+       $this->db->from('iso_3166_1');
+       $this->db->order_by('printable_name', 'asc');
+       $query=$this->db->get();
+       return $query;
+    }
+
+    function getData($loadType,$loadId)
+    {
+
+        $fieldList='id,name';
+        $table='iso_3166_2';
+        $fieldName='3166_1_id';
+        $orderByField='name';
+       
+       $this->db->select($fieldList);
+       $this->db->from($table);
+       $this->db->where($fieldName, $loadId);
+       $this->db->order_by($orderByField, 'asc');
+       $query=$this->db->get();
+       return $query;
+     }
+
+     function get_country_name($id){
+        $this->db->select('printable_name');
+        $this->db->from('iso_3166_1');
+        $this->db->where('id', $id);
+        $query = $this->db->get();
+        return $query->result()[0]->printable_name;
+     }
+
+     function get_state_name($id){
+        $this->db->select('name');
+        $this->db->from('iso_3166_2');
+        $this->db->where('id', $id);
+        $query =  $this->db->get();
+        return $query->result()[0]->name;
+     }
 }
 
 ?>
