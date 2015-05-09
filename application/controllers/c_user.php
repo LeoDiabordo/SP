@@ -71,6 +71,7 @@ class C_user extends CI_Controller
         );
 
         $this->m_user->initialize_info($id ,$user_data);
+        redirect('/c_user/update_information/','refresh'); 
     }
 
     function create_post(){
@@ -118,15 +119,33 @@ class C_user extends CI_Controller
         $stno = $this->session->userdata('student_no');
 
 
-        $companynumber = $this->m_user->get_companyno($this->input->post('exp-company-name'));
+        $name = $this->input->post('exp-company-name');
+        $loc = $this->input->post('exp-company-loc');
+        $type = $this->input->post('exp-company-type');
+
+
+
+        $companynumber = $this->m_user->get_companyno($name, $loc, $type);
+
+        $position = $this->input->post('exp-job-position');
         $title = $this->input->post('exp-job-title');
         $salary = $this->input->post('exp-job-salary');
-        $companytype = $this->input->post('exp-company-type');
         $empstat = $this->input->post('exp-job-type');
         $datestart = $this->input->post('exp-job-start');
         $dateend = $this->input->post('exp-job-start');
 
-        $this->m_user->add_experience($stno);
+         $user_data = array(
+           'studentno' => $stno,
+           'companyno' => $companynumber,
+           'position' => $position,
+           'salary' => $salary,
+           'employmentstatus' => $empstat,
+           'datestart' => $datestart,
+           'dateend' => $dateend
+        );
+
+         // var_dump($user_data);
+        $this->m_user->add_experience($user_data);
         redirect('/c_user/update_information','refresh'); 
     }
 

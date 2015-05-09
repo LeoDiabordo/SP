@@ -29,6 +29,10 @@
                                     <option value="1"> Government </option>
                                 </select>
                             </div>
+                            <div class="large-8 columns">
+                            <label> Position</label>
+                            <input type="text" name="exp-job-position" id="exp-job-position"/>
+                            </div>
                             <div class="large-4 columns"> </div>
                             <div class="large-4 columns"> </div>
                             <div class="large-12 columns">

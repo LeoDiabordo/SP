@@ -65,23 +65,62 @@ class M_user extends CI_Model{
         return $query;
     }
 
-    function get_companyno($name){
-        $q = $this->db->query("SELECT companyno FROM company WHERE name LIKE '$name' LIMIT 1");
-        return $q->row()->companyno; 
+    function request($name, $loc, $type){
+        $stno = $this->session->userdata('student_no');
+
+        echo($name.", ".$loc.", ".$type);
+
+
+        $this->db->set('name', $name);
+        $this->db->set('address', $loc);
+        $this->db->set('companytype', $type);
+
+        $this->db->insert('company');
+
+        $this->db->set('studentnos', $stno);
+
+        if($type!=NULL)
+            $this->db->set('request_type', 0);
+        else
+            $this->db->set('request_type', 1);
+
+
+        $this->db->insert('request');
     }
 
-    function add_experience($stno){
-        $companynumber = $this->m_user->get_companyno($this->input->post('exp-company-name'));
-        $title = $this->input->post('exp-job-title');
-        $salary = $this->input->post('exp-job-salary');
-        $companytype = $this->input->post('exp-company-type');
+    function get_companyno($name, $loc, $type){
 
-        $empstat = $this->input->post('exp-job-type');
-        $datestart = $this->input->post('exp-job-start');
-        $dateend = $this->input->post('exp-job-start');
 
-        $query = $this->db->query("INSERT INTO work VALUES ('','$stno','$companynumber','$title','$salary','','$companytype','$empstat','$datestart','$dateend')");
 
+        $this->db->select('company_no');
+        $this->db->from('company');
+        $this->db->where('name', $name);
+        $this->db->where('address', $loc);
+        $this->db->where('companytype', $type);
+
+        $query = $this->db->get();
+
+        // var_dump($query);
+        // var_dump($query->result());
+        // var_dump($loc);
+        // var_dump($name);
+        // var_dump($type);
+
+
+
+        if($query->result()){
+            return $query->row()->company_no; 
+
+        }
+        else{
+            $this->request($name, $loc, $type);
+            return $this->get_companyno($name, $loc, $type);    
+        }
+    }
+
+    function add_experience($user_data){
+        $this->db->insert('work', $user_data); 
+        return;
     }
 
     function get_companies_name($q){
