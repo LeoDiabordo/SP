@@ -65,7 +65,7 @@ class M_user extends CI_Model{
         return $query;
     }
 
-    function request($name, $loc, $type){
+    function request_company($name, $loc, $type){
         $stno = $this->session->userdata('student_no');
 
         echo($name.", ".$loc.", ".$type);
@@ -88,8 +88,24 @@ class M_user extends CI_Model{
         $this->db->insert('request');
     }
 
-    function get_companyno($name, $loc, $type){
 
+    function request_school($name, $loc){
+        $stno = $this->session->userdata('student_no');
+
+        echo($name.", ".$loc.", ".$type);
+
+
+        $this->db->set('name', $name);
+        $this->db->set('address', $loc);
+        $this->db->insert('school');
+        
+        $this->db->set('studentnos', $stno);
+        $this->db->set('request_type', 1);
+        $this->db->insert('request');
+    }
+
+    function get_companyno($name, $loc, $type){
+        
 
 
         $this->db->select('company_no');
@@ -100,26 +116,45 @@ class M_user extends CI_Model{
 
         $query = $this->db->get();
 
-        // var_dump($query);
-        // var_dump($query->result());
-        // var_dump($loc);
-        // var_dump($name);
-        // var_dump($type);
-
-
-
         if($query->result()){
             return $query->row()->company_no; 
-
         }
         else{
-            $this->request($name, $loc, $type);
+            $this->request_company($name, $loc, $type);
             return $this->get_companyno($name, $loc, $type);    
         }
     }
 
+
+    function get_schoolno($name, $loc){
+        
+
+
+        $this->db->select('school_no');
+        $this->db->from('school');
+        $this->db->where('name', $name);
+        $this->db->where('address', $loc);
+
+        $query = $this->db->get();
+
+        if($query->result()){
+            return $query->row()->school_no; 
+        }
+        else{
+            $this->request_school($name, $loc);
+            return $this->get_companyno($name, $loc);    
+        }
+    }
+
+
+
     function add_experience($user_data){
         $this->db->insert('work', $user_data); 
+        return;
+    }
+
+    function add_education($user_data){
+        $this->db->insert('educationalbg', $user_data); 
         return;
     }
 
@@ -141,6 +176,34 @@ class M_user extends CI_Model{
         $this->db->select('*');
         $this->db->like('address', $q);
         $query = $this->db->get('company');
+        if($query->num_rows > 0){
+          foreach ($query->result_array() as $row){
+            $new_row['label']=htmlentities(stripslashes($row['address']));
+            $new_row['value']=htmlentities(stripslashes($row['address']));
+            $row_set[] = $new_row; //build an array
+          }
+          echo json_encode($row_set); //format the array into json data
+        }
+    }
+
+    function get_school_name($q){
+        $this->db->select('*');
+        $this->db->like('name', $q);
+        $query = $this->db->get('school');
+        if($query->num_rows > 0){
+          foreach ($query->result_array() as $row){
+            $new_row['label']=htmlentities(stripslashes($row['name']));
+            $new_row['value']=htmlentities(stripslashes($row['name']));
+            $row_set[] = $new_row; //build an array
+          }
+          echo json_encode($row_set); //format the array into json data
+        }
+    }
+
+    function get_school_add($q){
+        $this->db->select('*');
+        $this->db->like('name', $q);
+        $query = $this->db->get('school');
         if($query->num_rows > 0){
           foreach ($query->result_array() as $row){
             $new_row['label']=htmlentities(stripslashes($row['address']));

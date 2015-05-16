@@ -149,6 +149,39 @@ class C_user extends CI_Controller
         redirect('/c_user/update_information','refresh'); 
     }
 
+    function add_education(){
+        $data = $this->data;
+        $stno = $this->session->userdata('student_no');
+
+
+        $name = $this->input->post('educ-school-name');
+        $loc = $this->input->post('educ-school-add');
+
+        $schoolnumber = $this->m_user->get_schoolno($name, $loc);
+
+        $level = $this->input->post('educ-school-level');
+        $course = $this->input->post('educ-course');
+        $graduate = $this->input->post('educ-grad');
+        $batch = $this->input->post('educ-batch');
+        $class = $this->input->post('educ-class');
+        // $class=intval($class);
+        // var_dump($class);
+
+         $user_data = array(
+           'studentno' => $stno,
+           'school' => $schoolnumber,
+           'batch' => $batch,
+           'class' => $class,
+           'level' => $level,
+           'graduate' => $graduate,
+           'course' => $course
+        );
+
+         // var_dump($user_data);
+        $this->m_user->add_education($user_data);
+        redirect('/c_user/update_information','refresh'); 
+    }
+
 
     public function loadData()
      {
@@ -166,7 +199,19 @@ class C_user extends CI_Controller
      }
 
 
+    function get_school_name(){
+        if (isset($_GET['term'])){
+        $q = strtolower($_GET['term']);
+        $this->m_user->get_school_name($q);
+        }
+    }
 
+    function get_school_add(){
+        if (isset($_GET['term'])){
+        $q = strtolower($_GET['term']);
+        $this->m_user->get_school_add($q);
+        }
+    }
 
     function get_companies_name(){
         if (isset($_GET['term'])){
@@ -180,6 +225,9 @@ class C_user extends CI_Controller
         $q = strtolower($_GET['term']);
         $this->m_user->get_companies_loc($q);
     }
+
+    
+
     }
     
     

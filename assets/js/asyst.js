@@ -12,6 +12,29 @@ $(function(){
   });
 });
 
+$(function(){
+  $("#educ-school-name").autocomplete({
+    source: "../c_user/get_school_name",
+    minLength: 3,
+  });
+});
+
+$(function(){
+  $("#educ-school-add").autocomplete({
+    source: "../c_user/get_school_add",
+    minLength: 3,
+  });
+});
+
+function enableTertiary(value){
+  if (value!="Tertiary")
+    document.getElementById('educ-course').disabled = true;
+  else
+    document.getElementById('educ-course').disabled = false;
+}
+
+
+//Address Dropdown Autofill
 function selectState(country_id){
   if(country_id!="-1"){
     loadData('state',country_id);
