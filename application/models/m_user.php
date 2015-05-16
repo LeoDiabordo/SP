@@ -147,6 +147,16 @@ class M_user extends CI_Model{
         }
     }
 
+    function getWork(){
+        $stno = $this->session->userdata('student_no');
+
+        $this->db->select('*');
+        $this->db->from('work');
+        $this->db->where('studentno', $stno);
+        $this->db->order_by('workdatestart', 'asc');
+        $query=$this->db->get();
+        return $query;
+    }
 
 
     function add_experience($user_data){

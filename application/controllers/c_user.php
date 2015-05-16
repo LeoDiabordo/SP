@@ -93,8 +93,8 @@ class C_user extends CI_Controller
     function update_information(){
         $data = $this->data;
         $data['list']=$this->m_user->getCountry();
+        $data['histExp']=$this->m_user->getWork();
 
-        
         $this->load->view('v_userheader', $data);
         $this->load->view('v_userinfo');
         $this->load->view('v_footer');
