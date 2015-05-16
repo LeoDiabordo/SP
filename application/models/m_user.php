@@ -76,11 +76,13 @@ class M_user extends CI_Model{
         $this->db->set('caddprovincecode', $caddprovincecode);
         $this->db->set('companytype', $type);
         $this->db->insert('company');
-        //$companyno = $this->get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type); 
+        return;
+        //
+        // $companyno = $this->get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type); 
 
-        var_dump($companyno);
-        //$this->db->set('companyno', $companyno);
-        //$this->db->insert('request');
+        // var_dump($companyno);
+        // $this->db->set('companyno', $companyno)
+        // $this->db->insert('request');
     }
 
 
@@ -114,7 +116,10 @@ class M_user extends CI_Model{
         }
         else{
             $this->request_company($name, $country, $caddcountrycode, $state, $caddprovincecode, $type);
-            return $this->get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type); 
+            $companyno = $this->get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type);
+            $this->db->set('companyno', $companyno);
+            $this->db->insert('request');
+            return $companyno;
         }
     }
 

@@ -16,10 +16,28 @@
                             <label> Company</label>
                             <input type="text" name="exp-company-name" id="exp-company-name"/>
                             </div>
-                            <div class="large-12 columns">
-                            <label> Location</label>
-                            <input type="text" name="exp-company-loc" id="exp-company-loc"/>
+                           
+
+                            <div class="large-6 columns">
+                                <label> Country </label>
+                                <select name="country" onchange="selectState(this.options[this.selectedIndex].value)">
+                                    <option value="-1">Select country</option>
+                                        <?php
+                                            foreach($list->result() as $listElement){
+                                                ?>
+                                                    <option value="<?php echo $listElement->alpha_2?>"><?php echo $listElement->name?></option>
+                                                <?php
+                                            }
+                                        ?>
+                                </select>
                             </div>
+                            <div class="large-6 columns">
+                                <label> Province </label>
+                                <select id="state_dropdown" name="state">
+                                    <option value="-1">Select State/Province/Region</option>
+                                </select>
+                            </div>
+
                             <div class="large-4 columns">
                                 <label> Company Type </label>
                                 <select name="exp-company-type">
@@ -64,6 +82,13 @@
                                     <option value="Self-employed"> Self-employed </option>
                                 </select>
                             </div>
+
+                            <div class="large-12 columns">
+                                <label> Current Job? </label>
+                                <input type="radio" name="exp-current" value="1" checked>Yes
+                                <input type="radio" name="exp-current" value="0">No
+                            </div>
+
                             <div class="large-12 columns">
                                 <label> Time Period</label>
                                 <div class="large-4 columns">

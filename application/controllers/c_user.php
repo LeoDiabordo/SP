@@ -135,7 +135,7 @@ class C_user extends CI_Controller
         $state = $this->m_user->get_state_name($caddprovincecode);
 
         $companynumber = $this->m_user->get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type);
-
+        
         $position = $this->input->post('exp-job-position');
         $title = $this->input->post('exp-job-title');
         $salary = $this->input->post('exp-job-salary');
