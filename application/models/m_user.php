@@ -48,6 +48,7 @@ class M_user extends CI_Model{
 
         $batch = substr($stno, 0, 4);
         $found_suggestions = $this->db->query("SELECT * FROM graduate WHERE student_no LIKE '$batch%' AND student_no NOT IN (SELECT studentno2 FROM connection WHERE studentno1 = '$stno')");
+
         return $found_suggestions->result_array();
     }
 
@@ -160,12 +161,12 @@ class M_user extends CI_Model{
 
     function get_companies_name($q){
         $this->db->select('*');
-        $this->db->like('name', $q);
+        $this->db->like('companyname', $q);
         $query = $this->db->get('company');
         if($query->num_rows > 0){
           foreach ($query->result_array() as $row){
-            $new_row['label']=htmlentities(stripslashes($row['name']));
-            $new_row['value']=htmlentities(stripslashes($row['name']));
+            $new_row['label']=htmlentities(stripslashes($row['companyname']));
+            $new_row['value']=htmlentities(stripslashes($row['companyname']));
             $row_set[] = $new_row; //build an array
           }
           echo json_encode($row_set); //format the array into json data
@@ -216,9 +217,9 @@ class M_user extends CI_Model{
 
     function getCountry()
     {
-       $this->db->select('id,printable_name');
-       $this->db->from('iso_3166_1');
-       $this->db->order_by('printable_name', 'asc');
+       $this->db->select('alpha_2,name');
+       $this->db->from('meta_country');
+       $this->db->order_by('name', 'asc');
        $query=$this->db->get();
        return $query;
     }
@@ -226,9 +227,9 @@ class M_user extends CI_Model{
     function getData($loadType,$loadId)
     {
 
-        $fieldList='id,name';
-        $table='iso_3166_2';
-        $fieldName='3166_1_id';
+        $fieldList='iso_code,name';
+        $table='meta_province';
+        $fieldName='country_code';
         $orderByField='name';
        
        $this->db->select($fieldList);
@@ -239,18 +240,18 @@ class M_user extends CI_Model{
        return $query;
      }
 
-     function get_country_name($id){
-        $this->db->select('printable_name');
-        $this->db->from('iso_3166_1');
-        $this->db->where('id', $id);
+     function get_country_name($alpha_2){
+        $this->db->select('name');
+        $this->db->from('meta_country');
+        $this->db->where('alpha_2', $alpha_2);
         $query = $this->db->get();
-        return $query->result()[0]->printable_name;
+        return $query->result()[0]->name;
      }
 
-     function get_state_name($id){
+     function get_state_name($iso_code){
         $this->db->select('name');
-        $this->db->from('iso_3166_2');
-        $this->db->where('id', $id);
+        $this->db->from('meta_province');
+        $this->db->where('iso_code', $iso_code);
         $query =  $this->db->get();
         return $query->result()[0]->name;
      }

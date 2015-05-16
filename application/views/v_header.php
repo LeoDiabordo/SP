@@ -17,8 +17,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/foundation/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/jqueryui/jquery-ui.css">
 
-        
-
     </head>
 	<body>
         

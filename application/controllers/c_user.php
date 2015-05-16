@@ -54,9 +54,11 @@ class C_user extends CI_Controller
         $email = $this->input->post('grad-email');
         $mobileno = $this->input->post('grad-mobile');
         $telno = $this->input->post('grad-tel');
+        $curaddcountrycode = $this->input->post('country');
+        $curaddprovincecode = $this->input->post('state');
 
-        $country = $this->m_user->get_country_name($this->input->post('country'));
-        $country = $country.", ".$this->m_user->get_state_name($this->input->post('state'));
+        $country = $this->m_user->get_country_name($curaddcountrycode);
+        $state = $this->m_user->get_state_name($curaddprovincecode);
 
         $user_data = array(
            'firstname' => $fname,
@@ -67,9 +69,12 @@ class C_user extends CI_Controller
            'email' => $email,
            'mobileno' => $mobileno,
            'telno' => $telno,
-           'currentaddress' => $country
+           'curaddcountry' => $country,
+           'curaddprovince' => $state,
+           'curaddprovincecode' => $curaddprovincecode,
+           'curaddcountrycode' => $curaddcountrycode
         );
-
+        
         $this->m_user->initialize_info($id ,$user_data);
         redirect('/c_user/update_information/','refresh'); 
     }
@@ -192,7 +197,7 @@ class C_user extends CI_Controller
 
        if($result->num_rows() > 0){
          foreach($result->result() as $list){
-           $HTML.="<option value='".$list->id."'>".$list->name."</option>";
+           $HTML.="<option value='".$list->iso_code."'>".$list->name."</option>";
          }
        }
        echo $HTML;
