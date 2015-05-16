@@ -66,6 +66,11 @@ class M_user extends CI_Model{
         return $query;
     }
 
+    function add_project($user_data){
+        $this->db->insert('project', $user_data); 
+        return;
+    }
+
     function request_company($name, $country, $caddcountrycode, $state, $caddprovincecode, $type){
         $stno = $this->session->userdata('student_no');
 
@@ -133,7 +138,7 @@ class M_user extends CI_Model{
             $schoolno = $this->get_schoolno($name, $country, $saddcountrycode, $state, $saddprovincecode); 
             $this->db->set('schoolno', $schoolno);
             $this->db->insert('request');
-            return $schoolno;   
+            return $schoolno;
         }
     }
 

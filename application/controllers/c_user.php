@@ -194,6 +194,29 @@ class C_user extends CI_Controller
         redirect('/c_user/update_information','refresh'); 
     }
 
+    function add_project(){
+        $data = $this->data;
+        $stno = $this->session->userdata('student_no');
+
+        $title = $this->input->post('proj-title');
+        $desc = $this->input->post('proj-desc');
+        $start = $this->input->post('proj-start');
+        $end = $this->input->post('proj-end');
+
+        $user_data = array(
+           'studentno' => $stno,
+           'project_title' => $title,
+           'projectdesc' => $desc,
+           'projectdatestart' => $start,
+           'projectdateend' => $end
+        );
+
+        $this->m_user->add_project($user_data);
+        redirect('/c_user/update_information','refresh'); 
+    }
+
+
+
 
     public function loadData()
      {
