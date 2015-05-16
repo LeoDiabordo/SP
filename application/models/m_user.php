@@ -77,28 +77,19 @@ class M_user extends CI_Model{
         $this->db->set('companytype', $type);
         $this->db->insert('company');
         return;
-        //
-        // $companyno = $this->get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type); 
-
-        // var_dump($companyno);
-        // $this->db->set('companyno', $companyno)
-        // $this->db->insert('request');
     }
 
 
-    function request_school($name, $loc){
+    function request_school($name, $country, $saddcountrycode, $state, $saddprovincecode){
         $stno = $this->session->userdata('student_no');
 
-        echo($name.", ".$loc.", ".$type);
-
-
-        $this->db->set('name', $name);
-        $this->db->set('address', $loc);
+        $this->db->set('schoolname', $name);
+        $this->db->set('saddcountry', $country);
+        $this->db->set('saddprovince', $state);
+        $this->db->set('saddcountrycode', $saddcountrycode);
+        $this->db->set('saddprovincecode', $saddprovincecode);
         $this->db->insert('school');
-        
-        $this->db->set('studentnos', $stno);
-        $this->db->set('request_type', 1);
-        $this->db->insert('request');
+        return;
     }
 
     function get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type){
@@ -124,14 +115,13 @@ class M_user extends CI_Model{
     }
 
 
-    function get_schoolno($name, $loc){
+    function get_schoolno($name, $country, $saddcountrycode, $state, $saddprovincecode){
         
-
-
         $this->db->select('school_no');
         $this->db->from('school');
-        $this->db->where('name', $name);
-        $this->db->where('address', $loc);
+        $this->db->where('schoolname', $name);
+        $this->db->where('saddcountry', $country);
+        $this->db->where('saddprovince', $state);
 
         $query = $this->db->get();
 
@@ -139,8 +129,11 @@ class M_user extends CI_Model{
             return $query->row()->school_no; 
         }
         else{
-            $this->request_school($name, $loc);
-            return $this->get_companyno($name, $loc);    
+            $this->request_school($name, $country, $saddcountrycode, $state, $saddprovincecode);
+            $schoolno = $this->get_schoolno($name, $country, $saddcountrycode, $state, $saddprovincecode); 
+            $this->db->set('schoolno', $schoolno);
+            $this->db->insert('request');
+            return $schoolno;   
         }
     }
 
@@ -186,12 +179,12 @@ class M_user extends CI_Model{
 
     function get_school_name($q){
         $this->db->select('*');
-        $this->db->like('name', $q);
+        $this->db->like('schoolname', $q);
         $query = $this->db->get('school');
         if($query->num_rows > 0){
           foreach ($query->result_array() as $row){
-            $new_row['label']=htmlentities(stripslashes($row['name']));
-            $new_row['value']=htmlentities(stripslashes($row['name']));
+            $new_row['label']=htmlentities(stripslashes($row['schoolname']));
+            $new_row['value']=htmlentities(stripslashes($row['schoolname']));
             $row_set[] = $new_row; //build an array
           }
           echo json_encode($row_set); //format the array into json data

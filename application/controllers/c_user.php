@@ -135,7 +135,7 @@ class C_user extends CI_Controller
         $state = $this->m_user->get_state_name($caddprovincecode);
 
         $companynumber = $this->m_user->get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type);
-        
+
         $position = $this->input->post('exp-job-position');
         $title = $this->input->post('exp-job-title');
         $salary = $this->input->post('exp-job-salary');
@@ -162,11 +162,14 @@ class C_user extends CI_Controller
         $data = $this->data;
         $stno = $this->session->userdata('student_no');
 
-
         $name = $this->input->post('educ-school-name');
-        $loc = $this->input->post('educ-school-add');
+        $saddcountrycode = $this->input->post('educ_country');
+        $saddprovincecode = $this->input->post('educ_state');
 
-        $schoolnumber = $this->m_user->get_schoolno($name, $loc);
+        $country = $this->m_user->get_country_name($saddcountrycode);
+        $state = $this->m_user->get_state_name($saddprovincecode);
+
+        $schoolnumber = $this->m_user->get_schoolno($name, $country, $saddcountrycode, $state, $saddprovincecode);
 
         $level = $this->input->post('educ-school-level');
         $course = $this->input->post('educ-course');
@@ -178,7 +181,7 @@ class C_user extends CI_Controller
 
          $user_data = array(
            'studentno' => $stno,
-           'school' => $schoolnumber,
+           'schoolno' => $schoolnumber,
            'batch' => $batch,
            'class' => $class,
            'level' => $level,

@@ -115,10 +115,29 @@
                                 <label> School Name</label>
                                 <input type="text" name="educ-school-name" id="educ-school-name" class="educ-school-name" placeholder="School Name" />
                             </div>
-                            <div class="large-4 columns">
-                                <label> Address </label>
-                                <input type="text" name="educ-school-add" id="educ-school-add" class="educ-school-add" placeholder="School Address" />
+                            
+
+                            <div class="large-6 columns">
+                                <label> Country </label>
+                                <select name="educ_country" onchange="selectEducState(this.options[this.selectedIndex].value)">
+                                    <option value="-1">Select country</option>
+                                        <?php
+                                            foreach($list->result() as $listElement){
+                                                ?>
+                                                    <option value="<?php echo $listElement->alpha_2?>"><?php echo $listElement->name?></option>
+                                                <?php
+                                            }
+                                        ?>
+                                </select>
                             </div>
+                            <div class="large-6 columns">
+                                <label> Province </label>
+                                <select id="educ_state_dropdown" name="educ_state">
+                                    <option value="-1">Select State/Province/Region</option>
+                                </select>
+                            </div>
+
+
                             <div class="large-12 columns">
                                 <label> Level </label>
                                 <select name="educ-school-level" onchange="enableTertiary(this.options[this.selectedIndex].value)">
