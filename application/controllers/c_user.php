@@ -216,6 +216,29 @@ class C_user extends CI_Controller
     }
 
 
+    function add_publication(){
+        $data = $this->data;
+        $stno = $this->session->userdata('student_no');
+
+        $title = $this->input->post('pub-title');
+        $desc = $this->input->post('pub-desc');
+        $body = $this->input->post('pub-body');
+        $date = $this->input->post('pub-date');
+
+        $user_data = array(
+           'studentno' => $stno,
+           'publicationtitle' => $title,
+           'publicationdesc' => $desc,
+           'publicationbody' => $body,
+           'publicationdate' => $date
+        );
+
+        $this->m_user->add_publication($user_data);
+        redirect('/c_user/update_information','refresh');
+    }
+
+
+
 
 
     public function loadData()

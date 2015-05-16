@@ -71,6 +71,11 @@ class M_user extends CI_Model{
         return;
     }
 
+    function add_publication($user_data){
+        $this->db->insert('publication', $user_data); 
+        return;
+    }
+
     function request_company($name, $country, $caddcountrycode, $state, $caddprovincecode, $type){
         $stno = $this->session->userdata('student_no');
 
