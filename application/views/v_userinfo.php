@@ -6,10 +6,10 @@
                   <li class="tab-title active"><a href="#panel1">Experience</a></li>
                   <li class="tab-title"><a href="#panel2">Education</a></li>
                   <li class="tab-title"><a href="#panel3">Projects</a></li>
-                  <li class="tab-title"><a href="#panel3">Publications</a></li>
+                  <li class="tab-title"><a href="#panel4">Publications</a></li>
                 </ul>
                 <div class="tabs-content">
-                  <div class="content" id="panel1">
+                  <div class="content active" id="panel1">
                     <div class="row">
                         <form method='post' action='<?php echo base_url('/index.php/c_user/add_experience')?>'>
                             <div class="large-12 columns">
@@ -108,7 +108,7 @@
                         </form>
                     </div>
                   </div>
-                  <div class="content active" id="panel2">
+                  <div class="content" id="panel2">
                     <div class="row">
                         <form method='post' action='<?php echo base_url('/index.php/c_user/add_education')?>'>
                             <div class="large-12 columns">
@@ -235,15 +235,104 @@
                         </form>
                     </div>
                   </div>
-                  <div class="content" id="panel3">
-                    <p>This is the third panel of the basic tab example. This is the third panel of the basic tab example.</p>
-                  </div>
+                <div class="content" id="panel3">
+                    <div class="row">
+                        <form method='post' action='<?php echo base_url('/index.php/c_user/add_project')?>'>
+                            <div class="large-12 columns">
+                                <label> Project Title</label>
+                                <input type="text" name="proj-title" id="proj-title"/>
+                            </div>
+                           
+
+                            <div class="large-12 columns">
+                                <label> Project Description </label>
+                                <textarea maxlength="300" name="proj-desc" id="proj-desc" ></textarea>
+                            </div>
+
+                            <div class="large-12 columns">
+                                <label> On Going? </label>
+                                <input type="radio" name="proj-ongoing" value="1">Yes
+                                <input type="radio" name="proj-ongoing" value="0">No
+                            </div>
+
+                            <div class="large-12 columns">
+                                <label> Time Period</label>
+                                <div class="large-4 columns">
+                                    <input type="date" name="proj-start" id="proj-start"/>
+                                </div>
+                                
+                                <div class="large-4 columns">
+                                    <input type="date" name="proj-end" id="proj-end"/>
+                                </div>
+                                <div class="large-1 columns"> </div>
+                            </div>
+                            <div class="large-2 large-offset-10 columns">
+                                <div class="large-12 columns">
+                                    <input class="button" type="submit" name="submit" value="Save" id="proj-submit"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="content" id="panel4">
+                    <div class="row">
+                        <form method='post' action='<?php echo base_url('/index.php/c_user/add_publication')?>'>
+                            <div class="large-12 columns">
+                                <label> Publication Title</label>
+                                <input type="text" name="pub-title" id="pub-title"/>
+                            </div>
+                           
+
+                            <div class="large-12 columns">
+                                <label> Publication Description </label>
+                                <textarea maxlength="300" name="pub-desc" id="pub-desc" ></textarea>
+                            </div>
+
+                            <div class="large-12 columns">
+                                <label> Publication Body </label>
+                                <input type="text" name="pub-body" id="pub-body">
+                            </div>
+
+                            <div class="large-12 columns">
+                                <label> Publication Date</label>
+                                <div class="large-4 columns">
+                                    <input type="date" name="pub-date" id="pub-date"/>
+                                </div>
+                            </div>
+                            <div class="large-2 large-offset-10 columns">
+                                <div class="large-12 columns">
+                                    <input class="button" type="submit" name="submit" value="Save" id="proj-submit"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 </div>
             </div> 
             <div class="large-3 columns">
                 <label>History</label>
-                text text text text text text text text text texttext text text text texttext text text text texttext text text text texttext text text text text
+                <div class="tabs-content">
+                    <div class="content active" id="panel1">
+                        <?php
+                            foreach($histExp->result() as $expElement){
+                                ?>
+                                    <div>
+                                        <?php
+                                            echo $expElement->workdatestart."<br>";
+
+                                        ?>
+                                    </div>
+                                <?php
+                            }
+                        ?>
+                    </div>
+                    <div class="content" id="panel2">
+                        
+                    </div>
+                </div>
             </div>
         </div>
     
 </div>
+
