@@ -92,6 +92,8 @@ class C_user extends CI_Controller
     
     function update_information(){
         $data = $this->data;
+        $data['list']=$this->m_user->getCountry();
+
         
         $this->load->view('v_userheader', $data);
         $this->load->view('v_userinfo');
@@ -125,12 +127,14 @@ class C_user extends CI_Controller
 
 
         $name = $this->input->post('exp-company-name');
-        $loc = $this->input->post('exp-company-loc');
+        $caddcountrycode = $this->input->post('country');
+        $caddprovincecode = $this->input->post('state');
         $type = $this->input->post('exp-company-type');
 
+        $country = $this->m_user->get_country_name($caddcountrycode);
+        $state = $this->m_user->get_state_name($caddprovincecode);
 
-
-        $companynumber = $this->m_user->get_companyno($name, $loc, $type);
+        $companynumber = $this->m_user->get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type);
 
         $position = $this->input->post('exp-job-position');
         $title = $this->input->post('exp-job-title');
@@ -145,8 +149,8 @@ class C_user extends CI_Controller
            'position' => $position,
            'salary' => $salary,
            'employmentstatus' => $empstat,
-           'datestart' => $datestart,
-           'dateend' => $dateend
+           'workdatestart' => $datestart,
+           'workdateend' => $dateend
         );
 
          // var_dump($user_data);

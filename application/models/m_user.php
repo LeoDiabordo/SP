@@ -66,27 +66,21 @@ class M_user extends CI_Model{
         return $query;
     }
 
-    function request_company($name, $loc, $type){
+    function request_company($name, $country, $caddcountrycode, $state, $caddprovincecode, $type){
         $stno = $this->session->userdata('student_no');
 
-        echo($name.", ".$loc.", ".$type);
-
-
-        $this->db->set('name', $name);
-        $this->db->set('address', $loc);
+        $this->db->set('companyname', $name);
+        $this->db->set('caddcountry', $country);
+        $this->db->set('caddprovince', $state);
+        $this->db->set('caddcountrycode', $caddcountrycode);
+        $this->db->set('caddprovincecode', $caddprovincecode);
         $this->db->set('companytype', $type);
-
         $this->db->insert('company');
+        //$companyno = $this->get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type); 
 
-        $this->db->set('studentnos', $stno);
-
-        if($type!=NULL)
-            $this->db->set('request_type', 0);
-        else
-            $this->db->set('request_type', 1);
-
-
-        $this->db->insert('request');
+        var_dump($companyno);
+        //$this->db->set('companyno', $companyno);
+        //$this->db->insert('request');
     }
 
 
@@ -105,15 +99,13 @@ class M_user extends CI_Model{
         $this->db->insert('request');
     }
 
-    function get_companyno($name, $loc, $type){
+    function get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type){
         
-
-
         $this->db->select('company_no');
         $this->db->from('company');
-        $this->db->where('name', $name);
-        $this->db->where('address', $loc);
-        $this->db->where('companytype', $type);
+        $this->db->where('companyname', $name);
+        $this->db->where('caddcountry', $country);
+        $this->db->where('caddprovince', $state);
 
         $query = $this->db->get();
 
@@ -121,8 +113,8 @@ class M_user extends CI_Model{
             return $query->row()->company_no; 
         }
         else{
-            $this->request_company($name, $loc, $type);
-            return $this->get_companyno($name, $loc, $type);    
+            $this->request_company($name, $country, $caddcountrycode, $state, $caddprovincecode, $type);
+            return $this->get_companyno($name, $country, $caddcountrycode, $state, $caddprovincecode, $type); 
         }
     }
 
