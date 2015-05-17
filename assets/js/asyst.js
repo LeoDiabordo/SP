@@ -77,3 +77,19 @@ function loadData(loadType,loadId){
  });
 };
 
+function loadStudents(classOf){
+  var dataString = 'classOf='+ classOf;
+  // $("#"+loadType+"_loader").show();
+  // $("#"+loadType+"_loader").fadeIn(400).html('Please wait... <img src="image/loading.gif" />');
+  $.ajax({
+    type: "POST",
+    url: "loadStudents",
+    data: dataString,
+    cache: false,
+    success: function(result){
+      // $("#"+loadType+"_loader").hide();
+      $("#Students").append(result);
+    }
+ });
+};
+

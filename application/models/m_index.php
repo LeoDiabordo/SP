@@ -28,6 +28,29 @@ class M_index extends CI_Model{
         return 0;
 	} //end of function login
     
+
+    function getStudents($classOf)
+    {
+        $this->db->select('studentno');
+        $this->db->from('educationalbg');
+        $this->db->where('class', $classOf);
+        $this->db->where('level', 'tertiary');
+        $this->db->where('schoolno', 1);
+        $studentno=$this->db->get();
+        
+        $list = array();
+
+        foreach($studentno->result() as $element){
+           array_push($list, $element->studentno);
+         }
+
+        $this->db->select('*');
+        $this->db->from('graduate');
+        $this->db->where_in('student_no', $list);
+        $query=$this->db->get();
+        
+        return $query;
+     }
     
     function get_yearlist(){
         // $found_yearlist = $this->db->query("select substr(graduate.`graduatedate`, 1, 4) as 'year' from graduate group by substr(graduate.graduatedate, 1, 4);");

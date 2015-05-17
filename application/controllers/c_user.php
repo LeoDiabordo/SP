@@ -256,6 +256,8 @@ class C_user extends CI_Controller
        echo $HTML;
      }
 
+     
+
 
     function get_school_name(){
         if (isset($_GET['term'])){

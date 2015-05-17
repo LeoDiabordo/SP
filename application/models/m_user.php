@@ -250,6 +250,9 @@ class M_user extends CI_Model{
        return $query;
      }
 
+
+     
+
      function get_country_name($alpha_2){
         $this->db->select('name');
         $this->db->from('meta_country');

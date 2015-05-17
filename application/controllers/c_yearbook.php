@@ -56,4 +56,19 @@ class C_yearbook extends CI_Controller
         $this->load->view('v_yearbook', $data);
         $this->load->view('v_footer');
     }
+
+    public function loadStudents()
+     {
+       $classOf=$_POST['classOf'];
+       $result=$this->m_index->getStudents($classOf);
+       $HTML="";
+
+       // var_dump($result);
+       
+        foreach($result->result() as $list){
+            $HTML.="<div>".$list->student_no."</div>";
+        }
+
+       echo $HTML;
+     }
 }
