@@ -49,6 +49,9 @@ class C_yearbook extends CI_Controller
     
     function yearbook(){
         $data['yearlist'] = $this->m_index->get_yearlist();
+        // foreach($data['yearlist']->result() as $listElement){
+        //     var_dump($listElement);
+        // }
         $this->load->view('v_header');
         $this->load->view('v_yearbook', $data);
         $this->load->view('v_footer');

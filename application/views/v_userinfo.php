@@ -319,6 +319,7 @@
                                 ?>
                                     <div>
                                         <?php
+                                            echo "<br>".$expElement->position."<br>";
                                             echo $expElement->workdatestart."<br>";
 
                                         ?>

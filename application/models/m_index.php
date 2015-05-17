@@ -30,8 +30,14 @@ class M_index extends CI_Model{
     
     
     function get_yearlist(){
-        $found_yearlist = $this->db->query("select substr(graduate.`graduatedate`, 1, 4) as 'year' from graduate group by substr(graduate.graduatedate, 1, 4);");
-        return $found_yearlist->result_array();
+        // $found_yearlist = $this->db->query("select substr(graduate.`graduatedate`, 1, 4) as 'year' from graduate group by substr(graduate.graduatedate, 1, 4);");
+        // return $found_yearlist->result_array();
+        $this->db->select('class');
+        $this->db->distinct('class');
+        $this->db->where('level', 'tertiary');
+       $this->db->order_by('class', 'asc');
+        $query=$this->db->get('educationalbg');
+        return $query;
     }
 
 }
