@@ -58,7 +58,8 @@ class M_index extends CI_Model{
         $this->db->select('class');
         $this->db->distinct('class');
         $this->db->where('level', 'tertiary');
-       $this->db->order_by('class', 'asc');
+        $this->db->where('schoolno', 1);
+        $this->db->order_by('class', 'asc');
         $query=$this->db->get('educationalbg');
         return $query;
     }
