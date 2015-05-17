@@ -245,6 +245,11 @@ class M_user extends CI_Model{
        $this->db->select($fieldList);
        $this->db->from($table);
        $this->db->where($fieldName, $loadId);
+
+       if($loadId == "PH"){
+        $this->db->where('type', 'Province');
+       }
+
        $this->db->order_by($orderByField, 'asc');
        $query=$this->db->get();
        return $query;
