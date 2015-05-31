@@ -1,5 +1,5 @@
 <div id="content-box" class="content-box clearfix" style="display: block;">
-    <h2>Account Information</h2>
+    <h2>Initialize Account Information</h2>
        
                 <div class="row">
                     <div class="large-9 columns">

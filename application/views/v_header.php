@@ -42,6 +42,7 @@
 										<input type="password" name="pword" id="login-pword" class="login-pword" placeholder="Password"/>
 										<input type="submit" name="submit" value="Submit" id="login-submit" class="login-submit" />
 									</form>
+									<a href="https://www.uplbosa.org/legacy/oneauth?code=onlineyearbook" class="button">OSAM</a>
 								</div>
 							</div>
                             
@@ -123,7 +124,7 @@
 							<button class="menu-trigger">Menu</button>
 							<ul class="menu menu-toggle clearfix">
 								<li><a href="<?php echo base_url('/index.php/c_index/'); ?>"><div class="menu-item">Home</div></a></li>
-								<li><a href="<?php echo base_url('/index.php/c_yearbook'); ?>"><div class="menu-item">UPLB Yearbooks</div></a></li> 
+								<li><a href="<?php echo base_url('/index.php/c_yearbook/yearbook'); ?>"><div class="menu-item">UPLB Yearbooks</div></a></li> 
 
                                 
 

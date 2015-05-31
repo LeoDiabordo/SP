@@ -50,7 +50,7 @@
 		<script type="text/javascript" src='<?php echo base_url(); ?>assets/js/modernizr.custom.js'></script>
 		<script type="text/javascript" src='<?php echo base_url(); ?>assets/jqueryui/jquery-ui.js'></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/asyst.js"></script>
-    <script> $(document).foundation(); </script>
+    <script> $(document).foundation('orbit', 'reflow'); </script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/header.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/slider.js"></script>
 

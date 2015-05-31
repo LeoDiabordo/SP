@@ -15,7 +15,7 @@ class C_yearbook extends CI_Controller
     {
         if ($this->session->userdata('logged_in'))
         {
-            redirect('/c_user/','refresh');
+            redirect('/c_user/home','refresh');
 
 //            $res = $this->m_index->login();
 //            $data['user'] = $res;
@@ -49,6 +49,7 @@ class C_yearbook extends CI_Controller
     
     function yearbook(){
         $data['yearlist'] = $this->m_index->get_yearlist();
+        $data['degreelist'] = $this->m_index->get_degreelist();
         // foreach($data['yearlist']->result() as $listElement){
         //     var_dump($listElement);
         // }
@@ -66,7 +67,13 @@ class C_yearbook extends CI_Controller
        // var_dump($result);
        
         foreach($result->result() as $list){
-            $HTML.="<div>".$list->student_no."</div>";
+            $HTML.="<div class='medium-2 columns end graduate' id='$list->course'>";
+            $HTML.="<a class='th' role='button' aria-label='Thumbnail'>";
+            $HTML.="<img aria-hidden=true src='$list->imagepath'/>";
+            $HTML.="</a>";
+            $HTML.="<div>".$list->lastname.", ".$list->firstname;
+            $HTML.="<br>".$list->course."</div>";
+            $HTML.="</div>";
         }
 
        echo $HTML;

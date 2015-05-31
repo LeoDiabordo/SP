@@ -15,7 +15,7 @@ class C_index extends CI_Controller
     {
         if ($this->session->userdata('logged_in'))
         {
-            redirect('/c_user/','refresh');
+            redirect('/c_user/home','refresh');
 
 //            $res = $this->m_index->login();
 //            $data['user'] = $res;
@@ -36,7 +36,7 @@ class C_index extends CI_Controller
         $res = $this->m_index->login();
         if($res)
         {
-            redirect('/c_user/','refresh');
+            redirect('/c_user/home','refresh');
         }
             redirect('/c_index/','refresh');
 

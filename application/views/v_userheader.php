@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!-- 
-	Source/s:
-		http://www.tutorialspoint.com/php/mysql_paging_php.htm
- -->
 <html class="no-js" lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -18,6 +14,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/foundation/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/osam2.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/asyst.css">
+
 
     
     </head>
@@ -64,7 +62,9 @@
 							<div class="login-component logged-in">
 								<div class="component component-part1">
 									<div class="login-picture">
-										<img src="<?php echo base_url(); ?>assets/img/sample.jpg"/>
+										<a class="th" role="button" aria-label="Thumbnail" href="<?php echo base_url('/index.php/c_user/profile'); ?>">
+                			<img aria-hidden=true src="<?php echo $user[0]['imagepath'];?>"/>
+                		</a>
 									</div>
 									<div class="login-info">
 										<h3> <?php echo $user[0]['firstname']." ".$user[0]['lastname'];?> </h3>
@@ -130,7 +130,7 @@
 						<nav id="menu-wrapper" class="menu-component menu-wrapper">
 							<button class="menu-trigger">Menu</button>
 							<ul class="menu menu-toggle clearfix">
-								<li><a href="<?php echo base_url('/index.php/c_user/'); ?>"><div class="menu-item">Home</div></a></li>
+								<li><a href="<?php echo base_url('/index.php/c_user/home'); ?>"><div class="menu-item">Home</div></a></li>
 								<li><a href="<?php echo base_url('/index.php/c_yearbook/yearbook'); ?>"><div class="menu-item">UPLB Yearbooks</div></a></li> 
 								<li><br></li> 
 								<li><a href="<?php echo base_url('/index.php/c_user/update_information'); ?>"><div class="menu-item">Update Info</div></a></li> 

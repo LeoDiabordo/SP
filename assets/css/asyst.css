@@ -1,8 +1,11 @@
-#owl-demo .item{
-  margin: 3px;
+#connection_searchbar{
+	padding-top: 50px;
 }
-#owl-demo .item img{
-  display: block;
-  width: 100%;
-  height: auto;
+
+.orbit-prev, .orbit-next{
+	background-color: gray !important; 
+}
+
+.yearbook-year{
+	margin-top: 20px !important;
 }

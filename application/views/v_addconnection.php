@@ -1,20 +1,69 @@
 <div id="content-box" class="content-box clearfix" style="display: block;">
     <h2>Add Connections</h2>
+    <!-- <?php var_dump($suggestions);?> -->
 
-
-    <div class="row panel">
+    <div class="row ">
         <h4>Suggested Connections</h4>
-        <?php foreach($smart_suggestions as $row) { ?>
-        <div class="yearbook-year medium-2 columns">
-            <a class="th" role="button" aria-label="Thumbnail" href="<?php echo base_url("/index.php/c_user/add?stno2=$row[student_no]"); ?>">
-            <img aria-hidden=true src="<?php echo base_url();?>/assets/img/uplb-logo.png"/>
-            </a>
-            <?php echo $row['firstname']."</br>".$row['lastname'];?>
-        </div>
+        
+        <ul class="example-orbit-content panel" data-orbit>
+            <li class="medium-centered">
+        <?php
+             $count=0;
+             foreach($suggestions as $row => $value) { 
+                if($count==6){
+                    echo "</li> <li>";
+                    $count=0;
+                    }
+                $count++;
+
+                $link = $value[0]->student_no;
+                $image = $value[0]->imagepath;
+                $lastname = $value[0]->lastname;
+                $firstname = $value[0]->firstname;
+        ?>
+            <div class="yearbook-year medium-2 columns end">
+                <a class="th" role="button" aria-label="Thumbnail" href="<?php echo base_url("/index.php/c_user/add?stno2=$link"); ?>">
+                <img aria-hidden=true src="<?php echo $image;?>"/>
+                </a>
+                <?php echo $lastname.", ".$firstname;?>
+            </div>
         <?php }?>
+
+        </ul>
     </div>
 
-    <div class="row panel">
+        <div id="connection_searchbar" class="medium-6 medium-centered columns">
+            <label> Search <label>
+            <form method='post' action='<?php echo base_url('/index.php/c_user/add_connection_search')?>'>
+                <input type="text" id="add_connection_search" name="add_connection_search"/>
+            </form>
+        </div>
+        <div class="medium-12 columns panel" id="add_connection_result">
+            <?php 
+                if(isset($results)){
+                    if (!empty($results)){
+                        foreach ($results as $key => $value) { ?>
+                            
+                            <div class="yearbook-year medium-2 columns end">
+                                <a class="th" role="button" aria-label="Thumbnail" href="<?php echo base_url("/index.php/c_user/add?stno2=$value->student_no"); ?>">
+                                <img aria-hidden=true src="<?php echo $value->imagepath; ?>"/>
+                                </a>
+                                <?php echo $value->lastname.", ".$value->firstname."<br>";?>
+                            </div>
+
+
+
+                        <?php }
+                    }
+                    else echo "No results found";
+                }
+            ?>
+        </div>
+
+
+
+
+    <!-- <div class="row panel">
         <h4>Connections</h4>
         <table id="sugcon">
             <thead>
@@ -28,11 +77,10 @@
                 <td><?php echo $row['student_no']?> </td>
                 <td><?php echo $row['firstname']?> </td>
                 <td><?php echo $row['lastname']?> </td>
-                <td><?php echo $row['field']?> </td>
             </tr>
             <?php }?>
         </table>
-    </div>
+    </div> -->
 
 <!--
     <form method="post" id="formself" class="filtered">
